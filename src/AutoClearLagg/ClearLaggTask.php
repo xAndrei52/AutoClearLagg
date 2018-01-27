@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ACL;
+namespace AutoClearLagg;
 
 use pocketmine\scheduler\PluginTask;
 
