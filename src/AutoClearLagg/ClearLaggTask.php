@@ -8,7 +8,7 @@ use pocketmine\scheduler\PluginTask;
 
 class ClearLaggTask extends PluginTask {
 
-	private $plugin, $player;
+	private $plugin;
 
 	public function __construct(Main $main){
 		$this->main = $main;
