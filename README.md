@@ -4,7 +4,7 @@ The plugin you need to keep your server lagg free!
 
 | Phar | View Count |
 | :---: | :---: |
- [![Download](https://img.shields.io/badge/download-latest-blue.svg)](https://poggit.pmmp.io/ci/PotatoeTrainYT/AutoClearLagg/~) | [![View Count](http://hits.dwyl.io/PotatoeTrainYT/AutoClearLagg.svg)](http://hits.dwyl.io/CLADevs/CLACore) |
+ [![Download](https://img.shields.io/badge/download-latest-blue.svg)](https://poggit.pmmp.io/ci/PotatoeTrainYT/AutoClearLagg/~) | [![View Count](http://hits.dwyl.io/PotatoeTrainYT/AutoClearLagg.svg)](http://hits.dwyl.io/PotatoeTrainYT/AutoClearLagg) |
 
 # Features
 - [x] Enable/Disable Mobs & Items
