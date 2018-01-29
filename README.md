@@ -11,6 +11,10 @@ The plugin you need to keep your server lagg free!
 - [x] Configurable Timer
 - [x] Editabe Messages
 
+## Credits
+[Falkirks](https://github.com/Falkirks/) - Clear Lagg Code
+
+
 # settings.yml
 ```---
 # AutoClearLagg (ACL) Settings
@@ -28,5 +32,3 @@ items-cleared-message: §cAll items cleared
 mobs-cleared-message: §cAll mobs cleared
 ...```
 
-## Credits
-[Falkirks](https://github.com/Falkirks/) - Clear Lagg Code
