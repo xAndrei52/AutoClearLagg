@@ -27,3 +27,6 @@ all-cleared-message: §cAll entites cleared
 items-cleared-message: §cAll items cleared
 mobs-cleared-message: §cAll mobs cleared
 ...```
+
+## Credits
+[Falkirks](https://github.com/Falkirks/) - Clear Lagg Code
