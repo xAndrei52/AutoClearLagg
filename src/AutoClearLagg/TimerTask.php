@@ -28,25 +28,54 @@ use pocketmine\scheduler\PluginTask;
 
 class TimerTask extends PluginTask{
 
-    /** @var */
+    /** @var Main $plugin */
     private $plugin;
-    /** @var int */
-    private $seconds;
+    /** @var int $seconds */
+    private $seconds = 0;
 
-    /**
-     * TimerTask constructor
-     *
-     * @param Main $plugin
-     * @param int $seconds
-     */
-    public function __construct(Main $plugin, int $seconds){
+    public function __construct(Main $plugin){
         parent::__construct($plugin);
         $this->plugin = $plugin;
-        $this->seconds = $seconds;
     }
 
-    public function onRun(int $currentTick){
-        // TODO: Implement Message or Popup Feature
-        $this->plugin->getServer()->broadcastMessage(str_replace("{SECONDS}", $this->seconds, $this->plugin->settings->get("time-left-message")));
+    public function onRun(int $currentTick) : void{
+        $seconds = $this->plugin->settings->get("seconds");
+        $time = $seconds * 20;
+        $this->seconds++;
+        $clearlaggTime = $time - $this->seconds;
+        if(is_numeric($seconds)){
+            switch($clearlaggTime){
+                case 60:
+                    $this->plugin->getServer()->broadcastMessage(str_replace("{SECONDS}", 60, $this->plugin->settings->get("time-left-message")));
+                    break;
+                case 30:
+                    $this->plugin->getServer()->broadcastMessage(str_replace("{SECONDS}", 30, $this->plugin->settings->get("time-left-message")));
+                    break;
+                case 10:
+                    $this->plugin->getServer()->broadcastMessage(str_replace("{SECONDS}", 10, $this->plugin->settings->get("time-left-message")));
+                    break;
+                case 5:
+                    $this->plugin->getServer()->broadcastMessage(str_replace("{SECONDS}", 5, $this->plugin->settings->get("time-left-message")));
+                    break;
+                case 4:
+                    $this->plugin->getServer()->broadcastMessage(str_replace("{SECONDS}", 4, $this->plugin->settings->get("time-left-message")));
+                    break;
+                case 3:
+                    $this->plugin->getServer()->broadcastMessage(str_replace("{SECONDS}", 4, $this->plugin->settings->get("time-left-message")));
+                    break;
+                case 2:
+                    $this->plugin->getServer()->broadcastMessage(str_replace("{SECONDS}", 4, $this->plugin->settings->get("time-left-message")));
+                    break;
+                case 1:
+                    $this->plugin->getServer()->broadcastMessage(str_replace("{SECONDS}", 4, $this->plugin->settings->get("time-left-message")));
+                    break;
+                case 0:
+                    $this->plugin->getServer()->getScheduler()->scheduleRepeatingTask(new ClearLaggTask($this->plugin), $seconds * 20);
+                    break;
+            }
+        }else{
+            $this->plugin->getLogger()->warning("Plugin disabling, Seconds is not a numeric value please edit");
+            $this->plugin->getPluginLoader()->disablePlugin($this->plugin);
+        }
     }
 }

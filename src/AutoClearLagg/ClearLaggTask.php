@@ -28,36 +28,26 @@ use pocketmine\scheduler\PluginTask;
 
 class ClearLaggTask extends PluginTask{
 
-    /** @var */
+    /** @var Main $plugin */
     private $plugin;
 
-    /**
-     * ClearLaggTask constructor
-     * #
-     * @param Main $plugin
-     */
     public function __construct(Main $plugin){
         $this->plugin = $plugin;
         parent::__construct($plugin);
     }
 
-    /**
-     * When the plugin runs
-     *
-     * @param int $currentTick
-     */
-    public function onRun(int $currentTick){
+    public function onRun(int $currentTick) : void{
         $settings = $this->plugin->settings;
-        if($settings->get("items") == true and $settings->get("mobs") == true){
+        if($settings->get("items") === true && $settings->get("mobs") === true){
             $this->plugin->clearItems();
             $this->plugin->clearMobs();
             $this->plugin->getServer()->broadcastMessage($settings->get("all-cleared-message"));
         }
-        if($settings->get("items") == true and $settings->get("mobs") == false){
+        if($settings->get("items") === true && $settings->get("mobs") === false){
             $this->plugin->clearItems();
             $this->plugin->getServer()->broadcastMessage($settings->get("items-cleared-message"));
         }
-        if($settings->get("mobs") == true and $settings->get("items") == false){
+        if($settings->get("mobs") === true && $settings->get("items") === false){
             $this->plugin->clearMobs();
             $this->plugin->getServer()->broadcastMessage($settings->get("mobs-cleared-message"));
         }
