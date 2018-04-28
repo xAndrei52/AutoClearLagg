@@ -29,6 +29,7 @@ use pocketmine\entity\Entity;
 use pocketmine\entity\Human;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
+use pocketmine\utils\TextFormat;
 
 class Main extends PluginBase{
 
@@ -40,7 +41,12 @@ class Main extends PluginBase{
         @mkdir($this->getDataFolder());
         $this->saveResource("settings.yml");
         $this->settings = new Config($this->getDataFolder() . "settings.yml", Config::YAML);
-        $this->getServer()->getScheduler()->scheduleRepeatingTask(new TimerTask($this), 20);
+        if(is_numeric($this->settings->get("seconds"))){
+            $this->getServer()->getScheduler()->scheduleRepeatingTask(new ClearLaggTask($this), $this->settings->get("seconds") * 20);
+        }else{
+            $this->getLogger()->error(TextFormat::RED . "Plugin Disabled! Please enter a number for the seconds");
+            $this->getPluginLoader()->disablePlugin($this);
+        }
     }
 
     public function clearItems() : int{
