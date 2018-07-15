@@ -1,5 +1,4 @@
 <?php
-
 /*
  *
  *   _____      _        _          _______ _          _____
@@ -19,7 +18,6 @@
  *
  *
 */
-
 declare(strict_types=1);
 
 namespace AutoClearLagg;
@@ -36,50 +34,45 @@ class Main extends PluginBase{
     /** @var Config $settings */
     public $settings;
 
-    public function onEnable() : void{
-        $this->getLogger()->info("AutoClearLagg Enabled! Plugin by Potatoe. Download at https://github.com/PotatoeTrainYT/AutoClearLagg/");
+    public function onEnable(): void{
         @mkdir($this->getDataFolder());
         $this->saveResource("settings.yml");
         $this->settings = new Config($this->getDataFolder() . "settings.yml", Config::YAML);
         if(is_numeric($this->settings->get("seconds"))){
-            $this->getServer()->getScheduler()->scheduleRepeatingTask(new ClearLaggTask($this), $this->settings->get("seconds") * 20);
+            $this->getScheduler()->scheduleRepeatingTask(new TimerTask($this, (int) $this->settings->get("seconds")), 20);
         }else{
-            $this->getLogger()->error(TextFormat::RED . "Plugin Disabled! Please enter a number for the seconds");
-            $this->getPluginLoader()->disablePlugin($this);
+            $this->getLogger()->error("Plugin Disabled! Please enter a number for the seconds");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
         }
     }
 
-    public function clearItems() : int{
+    public function clearItems(){
         $i = 0;
         foreach($this->getServer()->getLevels() as $level){
             foreach($level->getEntities() as $entity){
-                if(!$this->isEntityExempted($entity) && !($entity instanceof Creature)){
+                if(!($entity instanceof Creature)){
                     $entity->close();
                     $i++;
                 }
             }
         }
-        return $i;
+        $message = $this->settings->get("items-cleared-message");
+        $message = str_replace("{COUNT}", $i, $message);
+        $this->getServer()->broadcastMessage($message);
     }
 
-    public function clearMobs() : int{
+    public function clearMobs(){
         $i = 0;
         foreach($this->getServer()->getLevels() as $level){
             foreach($level->getEntities() as $entity){
-                if(!$this->isEntityExempted($entity) && $entity instanceof Creature && !($entity instanceof Human)){
+                if($entity instanceof Creature && !($entity instanceof Human)){
                     $entity->close();
                     $i++;
                 }
             }
         }
-        return $i;
-    }
-
-    public function exemptEntity(Entity $entity) : void{
-        $this->exemptedEntities[$entity->getID()] = $entity;
-    }
-
-    public function isEntityExempted(Entity $entity) : bool{
-        return isset($this->exemptedEntities[$entity->getID()]);
+        $message = $this->settings->get("mobs-cleared-message");
+        $message = str_replace("{COUNT}", $i, $message);
+        $this->getServer()->broadcastMessage($message);
     }
 }

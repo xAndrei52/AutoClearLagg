@@ -10,7 +10,9 @@ mobs: true
 
 # Messages broadcasted
 time-left-message: §cClear lagg in {SECONDS} seconds
-all-cleared-message: §cAll entites cleared
-items-cleared-message: §cAll items cleared
-mobs-cleared-message: §cAll mobs cleared
+items-cleared-message: §cCleared {COUNT} items
+mobs-cleared-message: §cCleared {COUNT} mobs
+
+# Countdown times
+times: [60, 30, 15, 10, 5, 4, 3, 2, 1]
 ...
