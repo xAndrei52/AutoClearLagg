@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace twisted\autoclearlagg;
 
-use function in_array;
 use pocketmine\entity\Creature;
 use pocketmine\entity\Human;
 use pocketmine\entity\object\ItemEntity;
 use pocketmine\plugin\PluginBase;
+use pocketmine\scheduler\ClosureTask;
 use function array_map;
+use function in_array;
 use function is_array;
 use function is_numeric;
-use pocketmine\scheduler\ClosureTask;
 use function str_replace;
 use function strtolower;
 
@@ -88,7 +88,7 @@ class AutoClearLagg extends PluginBase{
         }
         $this->broadcastTimes = $config["times"] ?? [60, 30, 15, 10, 5, 4, 3, 2, 1];
 
-        $this->getScheduler()->scheduleRepeatingTask(new ClosureTask(function($_) : void {
+        $this->getScheduler()->scheduleRepeatingTask(new ClosureTask(function($_) : void{
             if(--$this->seconds === 0){
                 $entitiesCleared = 0;
                 foreach($this->getServer()->getLevels() as $level){
