@@ -1,9 +1,9 @@
 name: AutoClearLagg
-description: The plugin you need to keep your server lagg free!
+description: Recoded & improved auto clear lagg plugin
 
-main: AutoClearLagg\Main
-version: 2.0.0
+main: twisted\autoclearlagg\AutoClearLagg
+version: 3.0.0
 api: [3.0.0]
 
-author: Potatoe
-website: https://github.com/PotatoeTrainYT/AutoClearLagg
+author: Twisted
+website: https://github.com/TwistedAsylumMC/AutoClearLagg
