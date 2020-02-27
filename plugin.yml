@@ -1,4 +1,4 @@
-name: AutoClearLagg
+name: GXPE_ClearLag
 description: Recoded & improved auto clear lagg plugin
 
 main: twisted\autoclearlagg\AutoClearLagg
