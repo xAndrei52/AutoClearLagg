@@ -2,7 +2,7 @@
 # AutoClearLagg (ACL) Config
 
 # Seconds between each clear lagg
-seconds: 300
+seconds: 240
 
 # Entities to clear
 clear:
@@ -13,9 +13,9 @@ clear:
     - Pig
 
 messages:
-  time-left: "§cEntities will clear in {SECONDS} seconds"
-  entities-cleared: "§cCleared a total of {COUNT} entities"
+  time-left: "§8[§3GXPE§8]§bEntities will clear in §3{SECONDS} seconds"
+  entities-cleared: "§8[§3GXPE§8] §bCleared a total of §3{COUNT} entities"
 
 # Countdown times
-times: [60, 30, 15, 10, 5, 4, 3, 2, 1]
+times: [120, 60, 30, 15, 10, 5, 4, 3, 2, 1]
 ...
